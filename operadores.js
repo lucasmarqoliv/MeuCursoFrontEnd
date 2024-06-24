@@ -24,3 +24,12 @@ function Divi(num1, num2) {
     return num1 / num2
 }
 console.log(Divi(10, 10))
+
+
+// DIFERENTE "!=="
+function Diferente(num1, num2) {
+    if (num1 !== num2) {
+    return true
+    }
+}
+console.log(Diferente(10, 11))
