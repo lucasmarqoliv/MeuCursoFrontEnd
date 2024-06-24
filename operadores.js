@@ -33,3 +33,12 @@ function Diferente(num1, num2) {
     }
 }
 console.log(Diferente(10, 11))
+
+
+// IGUAL "==="
+function Igual (num1, num2) {
+    if (num1 === num2) {
+        return true
+    }
+}
+console.log(Igual(10,10))
