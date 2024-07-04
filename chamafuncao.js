@@ -1,19 +1,14 @@
 // CHAMANDO FUNÇÃO COM A CONDICIONAL IF
 
-function calculadora(x, y) {
-    console.log()
+function calculadoraSoma(a, b) {
+    return a + b
 }
 
 function teste(operador, x, y) {
     if (operador === '+') {
-        return calculadora(x, y)
+        return calculadoraSoma(x, y)
     }
-
-    if (operacao === 'triplo') {
-        return triplo(x)
-    }
-    if (operacao === )
 }
 
-teste('dobro', 10)
-teste('triplo', 30)
+console.log(teste("+", 10, 10))
+console.log(teste("+", 30, 30))
