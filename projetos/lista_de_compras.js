@@ -3,14 +3,14 @@
 // SEM PRECISAR CRIAR VARIAVEIS INTERMEDIARIAS. 
 
 function adicionarItemNaLista(itens, item){
-    itens.push(item)
+    itens.push(item) // METODO PUSH ADICIONA O PARAMETRO ITEM A MATRIZ ITENS
         return itens
 }
 
 function exportarMinusculasCSV(itens){
     let minusculas = itens.map(function(item){
-        return item.toLowerCase()
-    }).join(', ')
+        return item.toLowerCase() // METODO .MAP TRANSFORMA CADA ITEM DA MATRIZ E CONVERTE CADA ITEM DA MATRIZ EM MINUSCULOS
+    }).join(', ') // UTILIZAÇÃO DO ENCADEAMENTO APOS O METODO .MAP
     return minusculas
 }
 
