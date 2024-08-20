@@ -6,7 +6,7 @@ numeros = numeros.join(';')
 console.log(numeros) // RETORNA 5;0;7;8;9
 
 function testeJoin(numeros) {
-    numeros = numeros.join(',')
+    numeros = numeros.join(', ')
     return numeros
 }
 console.log(testeJoin([5, 4, 8, 9, 7])) // RETORNA 5,4,8,9,7
