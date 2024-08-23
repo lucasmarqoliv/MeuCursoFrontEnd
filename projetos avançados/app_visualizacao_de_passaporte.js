@@ -5,7 +5,7 @@ class Passaporte {
         this.sobrenome = sobrenome;
     }
     obterNome() { // obterNome(), que retorna o primeiro nome em letras minúsculas.
-        return `${this.nome.toUpperCase()}`
+        return `${this.nome.toLowerCase()}`
     }
     obterSobrenome() { // obterSobrenome(), que retorna o sobrenome em letras maiúsculas.
         return `${this.sobrenome.toUpperCase()}`
