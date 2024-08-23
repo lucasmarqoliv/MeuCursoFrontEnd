@@ -17,7 +17,7 @@ class Passaporte {
         return `${this.nome[0]}. ${this.sobrenome[0]}.`
     }
     obterEhNomeValido() { // obterEhNomeValido(), que retorna a string "Sim" quando o primeiro nome tem pelo menos 1 caractere e o sobrenome tem pelo menos 1 caractere e o sobrenome NÃO termina com um caractere de ponto (.). Em todos os outros casos, deve retornar a string "Não".
-        if (this.nome !== "" && this.sobrenome !== "" && this.sobrenome[this.sobrenome.length - 1] !== "."){
+        if (this.nome.length > 0 && this.sobrenome.length > 0 && this.sobrenome[this.sobrenome.length - 1] !== "."){
             return `Sim`
         }
         else {
