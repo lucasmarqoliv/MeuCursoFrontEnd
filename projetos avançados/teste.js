@@ -23,6 +23,13 @@ let atletas = [
     console.log(`Atleta: ${atleta.nome}`);
     console.log(`Notas obtidas: ${atleta.notas}`);
 }
+ 
+
+let notas_organizadas = atletas.map(function(tarefa){
+  return tarefa.notas.sort((a, b) => b - a)
+})
+console.log(notas_organizadas)
+
 
 
 
