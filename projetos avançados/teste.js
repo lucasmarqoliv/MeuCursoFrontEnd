@@ -26,9 +26,16 @@ let atletas = [
  
 
 let notas_organizadas = atletas.map(function(tarefa){
-  return tarefa.notas.sort((a, b) => b - a)
+    return tarefa.notas.sort((a, b) => b - a)
 })
 console.log(notas_organizadas)
+
+notas_organizadas = notas_organizadas.map(function(nota_organizada){
+    return nota_organizada.slice(1,4)
+})
+console.log(notas_organizadas)
+
+
 
 
 
