@@ -1,0 +1,1 @@
+{"mappings":"AAAA;;;;ACCA","sources":["componentes/botao.css","app.css"],"sourcesContent":["button {\r\n    background-color: green;\r\n}","@import \"./componentes/botao.css\";\r\nh1 {\r\n    color: red;\r\n}"],"names":[],"version":3,"file":"index.75a90472.css.map","sourceRoot":"/__parcel_source_root/"}
