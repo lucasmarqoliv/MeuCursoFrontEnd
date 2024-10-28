@@ -9,7 +9,7 @@ let soma = notas.reduce((total, atual) => {
      console.log(`Atual é ${atual}`);
      console.log("---");
      return total + atual;
-}, 0);
+}, 0); // valor inicial do total(acumulador) obs:  em caso de multiplicação o valor inicial deve ser 1.
 
 console.log(`Soma é ${soma}`); 
 // saidas
