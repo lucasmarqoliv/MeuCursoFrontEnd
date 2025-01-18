@@ -22,23 +22,32 @@ let atletas = [
     let atleta = atletas[i];
     console.log(`Atleta: ${atleta.nome}`);
     console.log(`Notas obtidas: ${atleta.notas}`);
-}
+  }
  
 
 let notas_organizadas = atletas.map(function(tarefa){
     return tarefa.notas.sort((a, b) => b - a)
 })
-console.log(notas_organizadas)
 
 notas_organizadas = notas_organizadas.map(function(nota_organizada){
     return nota_organizada.slice(1,4)
 })
-console.log(notas_organizadas)
 
-
-
-
-
+// Novo bloco para calcular a média das notas organizadas
+notas_organizadas.forEach((notas) => {
+  let soma = 0;
+  
+  // Soma as notas organizadas usando forEach
+  notas.forEach((nota) => {
+      soma += nota;
+  });
+  
+  // Calcula a média
+  let media = soma / notas.length;
+  
+  // Exibe a média com duas casas decimais
+  console.log(`Média valida: ${media}`)
+});
 
 
 
