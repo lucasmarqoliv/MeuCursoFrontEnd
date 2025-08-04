@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Loja Virtual</title>
+    
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+        :root {
+        --primary: #4CAF50;
+        --secondary: #FFC107;
+        --light-gray: #DADCE0;
+        --dark: #222;
+    }
+
+    body {
+        margin: 15px;
+    }
+    label {
+        display: inline-block;
+        min-width: 100px;
+        margin: 5px 0;
+    }
+    .btn {
+        padding: 10px 20px;
+        cursor: pointer;
+        min-width: 100px;
+        border: 0;
+        border-radius: 3px;
+        font-size: 16px;
+        color: white;
+        transition: opacity 180ms ease-out, transform 180ms ease-out;
+    }
+    .btn:hover {
+        opacity: 0.8;
+    }
+    .btn:active {
+        transform: translate(1px, 1px);
+    }
+    .btn-primary {
+        background-color: var(--primary);
+    }
+    .btn-outline {
+        border: 1px solid var(--dark);
+        color: var(--dark);
+    }
+    .btn-delete {
+        margin-top: 5px;
+        border-radius: 3px;
+        cursor: pointer
+    }
+
+    .vitrine {
+        display: grid;
+        grid-gap: 30px;
+        grid-template-columns: 1fr 1fr;
+        margin-bottom: 20px;
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .mensagem-validacao {
+        color: red;
+    }
+
+    .campo-de-texto {
+        width: 100%;
+        padding: 12px;
+        border-radius: 2px;
+        border: 1px solid var(--light-gray);
+        font-size: 16px;
+        transition: opacity 200ms ease-out;
+        margin: 5px 0 15px 0;
+    }
+
+    form {
+        background-color: var(--light-gray);
+        padding: 20px;
+        border-radius: 3px;
+    }
+
+    .form-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .produto {
+        background-color: #ececec;
+        border-radius: 4px;
+        display: grid;
+        min-height: 110px;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+    }
+    .produto-info {
+        padding: 10px 10px;
+    }
+    .produto-info h2 {
+        margin-top: 10px;
+        margin-bottom: 0;
+        font-size: 20px;
+        font-weight: normal;
+    }
+    .produto-contador {
+        margin: 0;
+        font-weight: normal;
+        font-size: 16px;
+    }
+    .produto-info p {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+    .produto-botoes {
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: center;
+    }
+    .produto-sub,
+    .produto-add {
+        box-shadow: none;
+        border: 0;
+        transition: opacity 180ms ease-out;
+        padding: 5px;
+        font-size: 16px;
+        width: 28px;
+        height: 28px;
+        cursor: pointer;
+    }
+    .produto-sub {
+        border-radius: 0 3px 0 0;
+        background-color: var(--secondary);
+    }
+    .produto-add {
+        background-color: var(--primary);
+        color: white;
+        border-radius: 0 0 3px 0;
+    }
+    .produto-botoes button:disabled {
+        opacity: 0.5;
+        cursor: default;
+    }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+const { createRoot } = ReactDOM; 
+const { useState } = React;
+
+function Produto(props) {
+    const [contador, setContador] = useState(0);
+
+    const {detalhes} = props;
+
+    function manipuladorIncrementarPorClique() {
+        setContador(contador + 1);
+    }
+    function manipuladorDecrementarPorClique() {
+        if (contador > 0){
+            setContador(contador - 1);
+        }
+    }
+
+    if (!detalhes){
+        return null;
+    }
+
+    return <div className="produto">
+        <div className="produto-info">
+            <h2>{detalhes.nome}</h2>
+            <p>{detalhes.descricao}</p>
+        </div>
+        <div className="produto-botoes">
+            <button className="produto-sub" disabled={contador === 0} onClick={manipuladorDecrementarPorClique}>-</button>
+            <h3 className="produto-contador">{contador ? contador : ""}</h3>
+            <button className="produto-add" onClick={manipuladorIncrementarPorClique}>+</button>
+        </div>
+    </div>
+}
+ 
+function Vitrine() {
+    const [produtos, setProdutos] = useState([])
+    const [produto, setProduto] = useState({
+        nome: "",
+        descricao: ""
+    })
+    function manipularEnvioDeForm(event){
+        event.preventDefault();
+        const novoProduto = {
+            idProduto: produtos.length,
+            nome: produto.nome,
+            descricao: produto.descricao
+        }
+        setProdutos([...produtos, novoProduto]);
+        setProduto({ nome: "", descricao: "" })
+    }
+
+    function manipularBotaoExcluir(idProduto) {
+        const restante = produtos.filter(produto => produto.idProduto !== idProduto)
+        setProdutos(restante)
+    }
+
+    return (
+        <React.Fragment>
+            <form onSubmit={manipularEnvioDeForm}>
+                <div>
+                    <label htmlFor="nome-produto">Nome do Produto:</label>
+                    <input id="nome-produto" for="nome-produto" value={produto.nome} type="text" placeholder="Entre com o nome" className="campo-de-texto" onChange={event => setProduto({...produto, nome: event.target.value})}/>
+                </div>
+                <div>
+                    <label htmlFor="descricao-produto">Descrição do Produto:</label>
+                    <input id="descricao-produto" for="descricao-produto" value={produto.descricao} type="text" placeholder="Entre com a descrição" className="campo-de-texto" onChange={event => setProduto ({...produto, descricao: event.target.value})}/>
+                </div>
+                <div className="form-footer">
+                    <div className="mensagem-validacao"></div>
+                    <input type="submit" className="btn btn-primary" value="Adicionar o produto" />
+                </div>
+            </form>
+            <div><p>Adicione seu primeiro produto</p></div>
+            <ul className="vitrine">
+                {produtos.map(produto => {
+                    return ( 
+                        <li key={produto.idProduto}>
+                            <Produto detalhes={produto}/>
+                            <button className="btn-outline btn-delete" onClick={() => manipularBotaoExcluir(produto.idProduto)}>Excluir</button>
+                        </li>
+                )
+                })}
+            </ul>
+          </React.Fragment>
+    )
+}
+  
+function App() {
+        return <Vitrine />;
+}
+const root = document.querySelector("#root");
+createRoot(root).render(<App />);
+    </script>
+</body>
+</html>
