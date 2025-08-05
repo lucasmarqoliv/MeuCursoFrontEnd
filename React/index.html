@@ -220,11 +220,13 @@ function Vitrine() {
                     <input id="descricao-produto" for="descricao-produto" value={produto.descricao} type="text" placeholder="Entre com a descrição" className="campo-de-texto" onChange={event => setProduto ({...produto, descricao: event.target.value})}/>
                 </div>
                 <div className="form-footer">
-                    <div className="mensagem-validacao"></div>
-                    <input type="submit" className="btn btn-primary" value="Adicionar o produto" />
+                    <div className="mensagem-validacao"> { (!produto.nome || !produto.descricao)
+                        && <span>Preencha todos os campos</span>
+                    }</div>
+                    <input type="submit" className="btn btn-primary" value="Adicionar o produto" disabled={!produto.nome.length || !produto.descricao.length} />
                 </div>
             </form>
-            <div><p>Adicione seu primeiro produto</p></div>
+            <div hidden={produtos.length > 0}><p>Adicione seu primeiro produto</p></div>
             <ul className="vitrine">
                 {produtos.map(produto => {
                     return ( 
